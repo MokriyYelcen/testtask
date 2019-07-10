@@ -1,76 +1,126 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import cn from 'classnames';
+import axios from  'axios';
 
-class Square extends React.Component {
-    constructor(props){
+class Login extends React.Component {
+    constructor(props) {
         super(props);
-        this.state={value:null,};
+        this.state = {
+            username: '',
+            password: '',
+            validations: {
+
+            }
+
+        };
 
     }
-  render() {
-    return (
-      <button className="square"
-              onClick={ () => this.setState({value: 'X'})}
-      >
-        {this.state.value}
-      </button>
-    );
-  }
-}
+
+    handleChange = (e) => {
+        const {name, value} = e.target;
+        this.setState({[name]: value});
+    }
 
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const validations = this.validate(this.state);
+        if (Object.keys(validations).length){
 
-class Board extends React.Component {
-  renderSquare(i) {
-    return <Square value = {i} />;
-  }
+            this.setState({
+                validations
+            })
 
-  render() {
-    const status = 'Next player: X';
+        } else {
+            this.ascForToken(this.state.username,this.state.password);
 
-    return (
-      <div>
-        <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
-    );
-  }
-}
+        }
 
-class Game extends React.Component {
-  render() {
-    return (
-      <div className="game">
-        <div className="game-board">
-          <Board />
-        </div>
-        <div className="game-info">
-          <div>{/* status */}</div>
-          <ol>{/* TODO */}</ol>
-        </div>
-      </div>
-    );
-  }
+
+    };
+
+
+    validate(state){
+        const validations = {};
+
+
+        if(state.username.length < 3){
+            validations['username']  = true;
+        }
+
+        if(state.password.length < 3){
+            validations['password']  = true;
+        }
+
+        return validations;
+    }
+
+    ascForToken(username,password){
+        axios.post('http://localhost/api/login', {
+            login: username,
+            password: password,
+        }, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        }).then((response) => {
+            //return response.data;
+            const res = response.data;
+            this.setState({
+                res
+            });
+            //console.log(response.data)
+        })
+            .catch(alert);
+
+    }
+
+    render() {
+        return (
+            <div className="content">
+
+                <form className="form" action="">
+                    <div className="form-row"><h1>Login Page</h1></div>
+                    <div className="form-row">Username:
+
+                        <input
+                            className={cn('form-input-text', { invalid: this.state.validations.username })}
+                            type="text"
+                            name="username"
+                            value={this.state.username}
+                            onChange={this.handleChange}
+                        />
+
+                    </div>
+                    <div className="form-row">Password:
+                        <input
+                            className={cn('form-input-text', { invalid: this.state.validations.password })}
+                            type="password"
+                            name="password"
+                            value={this.state.password}
+                            onChange={this.handleChange}
+                        />
+                    </div>
+                    <div className="form-row">
+                        <button
+                            className="form-input-submit"
+                            value="Login"
+                            onClick={this.handleSubmit}
+                        >Login</button>
+                    </div>
+                </form>
+
+            </div>
+        );
+    }
 }
 
 // ========================================
 
 ReactDOM.render(
-  <Game />,
-  document.getElementById('root')
+    <Login/>,
+    document.getElementById('root')
 );
