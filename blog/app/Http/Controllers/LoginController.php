@@ -26,7 +26,7 @@ class LoginController extends Controller
                 return response()->json(['token' => $newToken]);
             }
             else{
-                return response()->json(['token' => null]);
+                return response('{"wrong":"password"}',401);
             }
 
         }

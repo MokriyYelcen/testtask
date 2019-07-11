@@ -3,16 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import cn from 'classnames';
 import axios from  'axios';
+import Chat from "./Chat";
+
 
 class Login extends React.Component {
     constructor(props) {
+        const auth = JSON.parse(localStorage.getItem('token')) || {};
         super(props);
         this.state = {
             username: '',
             password: '',
             validations: {
 
-            }
+            },
+            token: auth.token ||''
 
         };
 
@@ -67,18 +71,26 @@ class Login extends React.Component {
                 'Content-Type': 'application/json',
             }
         }).then((response) => {
-            //return response.data;
-            const res = response.data;
-            this.setState({
-                res
-            });
-            //console.log(response.data)
+
+            this.setState(
+                response.data
+            );
+
+            localStorage.setItem('token', JSON.stringify(response.data))
+
         })
-            .catch(alert);
+            .catch((reason) =>{
+                this.setState(
+                    reason.response.data
+                );
+            });
 
     }
 
     render() {
+        if (this.state.token){
+            return <Chat token={this.state.token}/>
+        }
         return (
             <div className="content">
 
@@ -103,6 +115,9 @@ class Login extends React.Component {
                             value={this.state.password}
                             onChange={this.handleChange}
                         />
+                        <div
+                            className={cn({pass_hint_none: !(this.state.wrong)},{pass_hint_visible: this.state.wrong})}
+                        >incorrect password</div>
                     </div>
                     <div className="form-row">
                         <button
