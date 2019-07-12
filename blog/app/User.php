@@ -38,4 +38,12 @@ class User extends Authenticatable
 
     ];
 
+    /**
+     * Get the messages of user.
+     */
+    public function Messages()
+    {
+        return $this->hasMany('App\Message');
+    }
+
 }

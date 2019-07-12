@@ -5,69 +5,89 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-use App\ChatServices\WebSocketServices\{onOpenService,onCloseService,onErrorService,onMessageService};
+use App\ChatServices\WebSocketServices\{UserService, MessageService};
 
 
 class WebSocketController extends Controller implements MessageComponentInterface
 {
     private $connections = [];
 
-    public $onOpenService;
-    public $onCloseService;
-    public $onErrorService;
-    public $onMessageService;
+    public $UserService;
+    public $MessageService;
 
-    public function __construct(){
-        $this->onOpenService= new onOpenService;
-        $this->onCloseService= new onCloseService;
-        $this->onErrorService= new onErrorService;
-        $this->onMessageService= new onMessageService;
+
+    public function __construct()
+    {
+        $this->UserService = new UserService;
+        $this->MessageService = new MessageService;
 
     }
 
 
     /**
      * When a new connection is opened it will be passed to this method
-     * @param  ConnectionInterface $conn The socket/connection that just connected to your application
+     * @param ConnectionInterface $conn The socket/connection that just connected to your application
      * @throws \Exception
      */
-    function onOpen(ConnectionInterface $conn){
-        $this->connections[$conn->resourceId] = compact('conn') + ['user_id' => null];
-        $conn->send($this->onOpenService->sayHello());
+    function onOpen(ConnectionInterface $conn)
+    {
 
-        /*
-        $conn->send(json_encode([
-            'offline_user' => 0,
-            'from_user_id' => 'server control',
-            'from_resource_id' => null
-        ]));*/
+        $user = $this->UserService->getUserByConnection($conn);
+
+        if ($user) {
+            $onlineList=[];
+            foreach ($this->connections as $userId =>$peer) {
+                $onlineList[$userId]=$peer->username;
+                $peer->send(json_encode(['type' => 'connection',
+                    'status' => 'connected',
+                    'member' => [
+                        'id' => $user->id,
+                        'username' => $user->login
+                    ]
+                ]));
+            }
+            $conn->username=$user->login;
+            $this->connections[$user->id] = $conn;
+
+            $conn->send(json_encode(['onlineList'=>$onlineList]));
+
+
+        } else {
+            $conn->close();
+        }
+
     }
 
     /**
      * This is called before or after a socket is closed (depends on how it's closed).  SendMessage to $conn will not result in an error if it has already been closed.
-     * @param  ConnectionInterface $conn The socket/connection that is closing/closed
+     * @param ConnectionInterface $conn The socket/connection that is closing/closed
      * @throws \Exception
      */
-    function onClose(ConnectionInterface $conn){
-        /*
-        $disconnectedId = $conn->resourceId;
-        unset($this->connections[$disconnectedId]);
-        foreach($this->connections as &$connection)
-            $connection['conn']->send(json_encode([
-                'offline_user' => $disconnectedId,
-                'from_user_id' => 'server control',
-                'from_resource_id' => null
-            ]));*/
+    function onClose(ConnectionInterface $conn)
+    {
+
+        $user = $this->UserService->getUserByConnection($conn);
+        unset($this->connections[$user->id]);
+        foreach ($this->connections as $peer) {
+            $peer->send(json_encode(['type' => 'connection',
+                'status' => 'disconnected',
+                'member' => [
+                    'id' => $user->id,
+                    'username' => $user->login
+                ]
+            ]));
+        }
     }
 
     /**
      * If there is an error with one of the sockets, or somewhere in the application where an Exception is thrown,
      * the Exception is sent back down the stack, handled by the Server and bubbled back up the application through this method
-     * @param  ConnectionInterface $conn
-     * @param  \Exception $e
+     * @param ConnectionInterface $conn
+     * @param \Exception $e
      * @throws \Exception
      */
-    function onError(ConnectionInterface $conn, \Exception $e){
+    function onError(ConnectionInterface $conn, \Exception $e)
+    {
         /*
         $userId = $this->connections[$conn->resourceId]['user_id'];
         echo "An error has occurred with user $userId: {$e->getMessage()}\n";
@@ -77,32 +97,41 @@ class WebSocketController extends Controller implements MessageComponentInterfac
 
     /**
      * Triggered when a client sends data through the socket
-     * @param  \Ratchet\ConnectionInterface $conn The socket/connection that sent the message to your application
-     * @param  string $msg The message received
+     * @param \Ratchet\ConnectionInterface $conn The socket/connection that sent the message to your application
+     * @param string $msg The message received
      * @throws \Exception
      */
-    function onMessage(ConnectionInterface $conn, $msg){
-        $string='I`ve got a message';
-        dd($string);
-        /*
-        if(is_null($this->connections[$conn->resourceId]['user_id'])){
-            $this->connections[$conn->resourceId]['user_id'] = $msg;
-            $onlineUsers = [];
-            foreach($this->connections as $resourceId => &$connection){
-                $connection['conn']->send(json_encode([$conn->resourceId => $msg]));
-                if($conn->resourceId != $resourceId)
-                    $onlineUsers[$resourceId] = $connection['user_id'];
+    function onMessage(ConnectionInterface $conn, $msg)
+    {
+
+
+
+
+        $user = $this->UserService->getUserByConnection($conn);
+
+        $message = json_decode($msg);
+
+        if (('message' == $message->type) && ('input' == $message->status)) {
+            if($this->MessageService->validateMessage($message)){
+
+                $this->MessageService->saveMessage($user->id, $message->content);
+                foreach ($this->connections as $peer) {
+                    $peer->send(json_encode([
+                        'type' => 'message',
+                        'status' => 'output',
+                        'author' => $user->login,
+                        'content' => $message->content
+
+                    ]));
+                }
+
             }
-            $conn->send(json_encode(['online_users' => $onlineUsers]));
-        } else{
-            $fromUserId = $this->connections[$conn->resourceId]['user_id'];
-            $msg = json_decode($msg, true);
-            $this->connections[$msg['to']]['conn']->send(json_encode([
-                'msg' => $msg['content'],
-                'from_user_id' => $fromUserId,
-                'from_resource_id' => $conn->resourceId
-            ]));
+
+
+
         }
-        */
+
+
+
     }
 }
