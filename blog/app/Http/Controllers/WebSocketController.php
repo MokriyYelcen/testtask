@@ -35,24 +35,44 @@ class WebSocketController extends Controller implements MessageComponentInterfac
         $user = $this->UserService->getUserByConnection($conn);
 
         if ($user) {
-            $onlineList=[];
-            foreach ($this->connections as $userId =>$peer) {
-                $onlineList[$userId]=$peer->username;
-                $peer->send(json_encode(['type' => 'connection',
-                    'status' => 'connected',
-                    'member' => [
-                        'id' => $user->id,
-                        'username' => $user->login
-                    ]
-                ]));
-            }
             $conn->username=$user->login;
+            if( $this->UserService->isAdmin($user->id)){
+                $conn->isAdmin=true;
+                $conn->send(json_encode([
+                    'type'=>'admin',
+                    'userList'=>$this->UserService->getAllUsersArray()
+                ]));
+
+            }
+
+
             $this->connections[$user->id] = $conn;
 
-            $conn->send(json_encode(['onlineList'=>$onlineList]));
+
+            $onlineList=[];
+            foreach ($this->connections as $peer) {
+                $onlineList[]=$peer->username;
+
+            }
+
+            foreach($this->connections as $peer){
+                $peer->send(json_encode([
+                    'type' => 'updateOnlineList',
+                    'onlineList'=>$onlineList
 
 
-        } else {
+                ]));
+            }
+            $conn->send(json_encode([
+                'type'=>'oldMessages',
+                'messages'=>$this->MessageService->getLastMessages()
+            ]));
+
+
+
+
+        }
+        else {
             $conn->close();
         }
 
@@ -68,15 +88,20 @@ class WebSocketController extends Controller implements MessageComponentInterfac
 
         $user = $this->UserService->getUserByConnection($conn);
         unset($this->connections[$user->id]);
+
+        $onlineList=[];
         foreach ($this->connections as $peer) {
-            $peer->send(json_encode(['type' => 'connection',
-                'status' => 'disconnected',
-                'member' => [
-                    'id' => $user->id,
-                    'username' => $user->login
-                ]
+            $onlineList[]=$peer->username;
+
+        }
+
+        foreach($this->connections as $peer){
+            $peer->send(json_encode([
+                'type' => 'updateOnlineList',
+                'onlineList'=>$onlineList
             ]));
         }
+
     }
 
     /**
@@ -119,6 +144,7 @@ class WebSocketController extends Controller implements MessageComponentInterfac
                     $peer->send(json_encode([
                         'type' => 'message',
                         'status' => 'output',
+                        'sent'=>date("Y-m-d H:i:s"),
                         'author' => $user->login,
                         'content' => $message->content
 

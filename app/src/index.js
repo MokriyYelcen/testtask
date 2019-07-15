@@ -89,7 +89,7 @@ class Login extends React.Component {
 
     render() {
         if (this.state.token){
-            return <Chat token={this.state.token}/>
+            return <Chat token={this.state.token} username={this.state.username}/>
         }
         return (
             <div className="content">

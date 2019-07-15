@@ -27,13 +27,26 @@ class UserService
 
     }
 
-    function isAdmin($token){
-        $probablyAdmin=User::where('token',$token)->first();
+    function isAdmin(int $id){
+        $probablyAdmin=User::find($id);
         if($probablyAdmin->isAdmin===1){
             return true;
         }
         return false;
 
+    }
+    function getAllUsersArray(){
+        $res=[];
+        $Users=User::all();
+        foreach($Users as $user){
+            $res[]=[
+                'id'=>$user->id,
+                'username'=>$user->login,
+                'banned'=>$user->banned,
+                'muted'=>$user->muted
+            ];
+        }
+        return $res;
     }
 /*
     function isReady(User $user){
@@ -41,5 +54,7 @@ class UserService
         if(Message)
 
     }*/
+
+
 
 }

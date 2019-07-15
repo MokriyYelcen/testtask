@@ -18,7 +18,14 @@ class CreateUsersTable extends Migration
             $table->string('login');
             $table->string('password');
             $table->string('token');
+            $table->bigInteger('color_id')->unsigned()->nullable(true);
             $table->boolean('isAdmin')->default(false);
+            $table->boolean('muted')->default(false);
+            $table->boolean('banned')->default(false);
+            $table->foreign('color_id')
+                ->references('id')->on('colors')
+                ->onDelete('cascade');
+
             $table->timestamps();
 
         });
