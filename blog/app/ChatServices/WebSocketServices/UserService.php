@@ -4,6 +4,7 @@
 namespace App\ChatServices\WebSocketServices;
 
 use App\{User,Message};
+use Ratchet\ConnectionInterface;
 
 
 class UserService
@@ -16,6 +17,10 @@ class UserService
         return json_encode(['hello'=>' Im` message from server']);
     }
 
+    function getUserById($id){
+        return User::find($id);
+    }
+
     function getUserByConnection($conn){
         $token = $conn->httpRequest->getUri()->getQuery();
         $Users=User::where('token',$token);
@@ -26,6 +31,8 @@ class UserService
 
 
     }
+
+
 
     function isAdmin(int $id){
         $probablyAdmin=User::find($id);
@@ -48,12 +55,24 @@ class UserService
         }
         return $res;
     }
-/*
-    function isReady(User $user){
-        $lastMessagetime=$user->Messages()->orderByDesc('created_at')->first()->createdAt;
-        if(Message)
 
-    }*/
+    function changeBanned($id){
+        $targetUser=User::find($id);
+        $was=$targetUser->banned;
+        $targetUser->banned=!($was);
+        $targetUser->save();
+
+    }
+    function changeMuted($id){
+        $targetUser=User::find($id);
+        $was=$targetUser->muted;
+        $targetUser->muted=!($was);
+        $targetUser->save();
+    }
+    function filterAdmins(Array $connections){
+        return array_filter($connections,function( $el){return $el->isAdmin;});
+    }
+
 
 
 

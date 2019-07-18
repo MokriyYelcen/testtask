@@ -4,6 +4,8 @@
 namespace App\ChatServices\WebSocketServices;
 use App\Message;
 use App\User;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class MessageService
 {
@@ -13,13 +15,36 @@ class MessageService
         $message->content=$content;
         $message->save();
     }
-    public function validateMessage($msg){
-        if(strlen($msg->content)<=200){
-            return true;
-        }
-        return false;
 
+    public function validateMessage($user, $message)
+    {
+        if (!$user->muted) {
+            Log::debug('not muted');
+            if (strlen($message->content) <= 255) {
+                Log::debug('content less 255');
+                Log::debug('calling ableToSend');
+                if (self::ableToSend($user->id)) {
+                    Log::debug('ableToSend ok');
+                    return null;
+                } else {
+                    Log::debug('ableToSend fail');
+                    return 'You can send messages no more than every 15 seconds ';
+                }
+            } else {
+                Log::debug('invalid content');
+                return 'Invalid content, message have not been sent';
+            }
+        } else {
+            Log::debug('account muted');
+            return 'Your account was muted by admin, wait please';
+        }
+        Log::debug('validated');
+        return null;
     }
+
+
+
+
 
     public function getLastMessages(){
         $all= Message::all();
@@ -37,4 +62,17 @@ class MessageService
     }
 
 
+    private static function ableToSend($id){
+        Log::debug('ableToSend start');
+        $message=User::find($id)->Messages()->orderByDesc('created_at')->first();
+        Log::debug($message);
+        if($message){
+            Log::debug($message->created_at->diffInSeconds(Carbon::now())>15);
+            return ($message->created_at->diffInSeconds(Carbon::now())>15);
+        }
+
+
+        Log::debug('return true from ableToSend ');
+        return true;
+    }
 }

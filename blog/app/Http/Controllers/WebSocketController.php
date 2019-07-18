@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 use App\ChatServices\WebSocketServices\{UserService, MessageService};
@@ -34,13 +35,13 @@ class WebSocketController extends Controller implements MessageComponentInterfac
 
         $user = $this->UserService->getUserByConnection($conn);
 
-        if ($user) {
-            $conn->username=$user->login;
-            if( $this->UserService->isAdmin($user->id)){
-                $conn->isAdmin=true;
+        if ($user && !$user->banned) {
+
+            $conn->username = $user->login;
+            if ($this->UserService->isAdmin($user->id)) {
+                $conn->isAdmin = true;
                 $conn->send(json_encode([
-                    'type'=>'admin',
-                    'userList'=>$this->UserService->getAllUsersArray()
+                    'type' => 'admin',
                 ]));
 
             }
@@ -49,30 +50,25 @@ class WebSocketController extends Controller implements MessageComponentInterfac
             $this->connections[$user->id] = $conn;
 
 
-            $onlineList=[];
+            $onlineList = [];
             foreach ($this->connections as $peer) {
-                $onlineList[]=$peer->username;
+                $onlineList[] = $peer->username;
 
             }
+            $conn->send(json_encode([
+                'type' => 'oldMessages',
+                'messages' => $this->MessageService->getLastMessages()
+            ]));
 
-            foreach($this->connections as $peer){
+            foreach ($this->connections as $peer) {
                 $peer->send(json_encode([
                     'type' => 'updateOnlineList',
-                    'onlineList'=>$onlineList
+                    'onlineList' => $onlineList
 
 
                 ]));
             }
-            $conn->send(json_encode([
-                'type'=>'oldMessages',
-                'messages'=>$this->MessageService->getLastMessages()
-            ]));
-
-
-
-
-        }
-        else {
+        } else {
             $conn->close();
         }
 
@@ -89,16 +85,16 @@ class WebSocketController extends Controller implements MessageComponentInterfac
         $user = $this->UserService->getUserByConnection($conn);
         unset($this->connections[$user->id]);
 
-        $onlineList=[];
+        $onlineList = [];
         foreach ($this->connections as $peer) {
-            $onlineList[]=$peer->username;
+            $onlineList[] = $peer->username;
 
         }
 
-        foreach($this->connections as $peer){
+        foreach ($this->connections as $peer) {
             $peer->send(json_encode([
                 'type' => 'updateOnlineList',
-                'onlineList'=>$onlineList
+                'onlineList' => $onlineList
             ]));
         }
 
@@ -128,35 +124,87 @@ class WebSocketController extends Controller implements MessageComponentInterfac
      */
     function onMessage(ConnectionInterface $conn, $msg)
     {
-
-
-
-
         $user = $this->UserService->getUserByConnection($conn);
-
         $message = json_decode($msg);
 
-        if (('message' == $message->type) && ('input' == $message->status)) {
-            if($this->MessageService->validateMessage($message)){
+        switch ($message->type) {
+            case'message':
+                Log::debug($msg);
+                $fail=$this->MessageService->validateMessage($user,$message);
+                Log::debug($fail);
+                if(!$fail){
+                    $this->MessageService->saveMessage($user->id, $message->content);
+                    foreach ($this->connections as $peer) {
+                        $peer->send(json_encode([
+                            'type' => 'message',
+                            'sent' => date("Y-m-d H:i:s"),
+                            'author' => $user->login,
+                            'content' => $message->content
 
-                $this->MessageService->saveMessage($user->id, $message->content);
-                foreach ($this->connections as $peer) {
-                    $peer->send(json_encode([
+                        ]));
+                    }
+                }
+                else{
+                    $conn->send(json_encode([
                         'type' => 'message',
-                        'status' => 'output',
-                        'sent'=>date("Y-m-d H:i:s"),
-                        'author' => $user->login,
-                        'content' => $message->content
+                        'sent' => date("Y-m-d H:i:s"),
+                        'author' => 'System',
+                        'content' => $fail
 
                     ]));
                 }
+                break;
 
-            }
+            case 'changeMuted':
+                if ($conn->isAdmin) {
+                    $this->UserService->changeMuted($message->user);
+                    foreach ($this->UserService->filterAdmins($this->connections) as $adminPeer) {
+                        $adminPeer->send(json_encode([
+                            'type' => 'updateUserList',
+                            'userList' => $this->UserService->getAllUsersArray()
+                        ]));
+                    }
 
+                }
+                break;
+
+            case 'changeBanned':
+                Log::debug('changeBanned');
+                if ($conn->isAdmin) {
+                    Log::debug('isAdmin');
+                    $pastBannedStatus=$this->UserService->getUserById($message->user)->banned;
+                    Log::debug('$pastBannedStatus' . $pastBannedStatus);
+                    $this->UserService->changeBanned($message->user);
+                    Log::debug('changeBanned fired');
+                    Log::debug('connections');
+                    Log::debug($this->connections[1]);
+                    foreach ($this->UserService->filterAdmins($this->connections) as $adminPeer) {
+                        Log::debug('Adminpeer ==='.$adminPeer);
+                        $adminPeer->send(json_encode([
+                            'type' => 'updateUserList',
+                            'userList' => $this->UserService->getAllUsersArray()
+                        ]));
+                    }
+                    if(!$pastBannedStatus){
+                        if ($this->connections[$message->user]) {
+                            $this->connections[$message->user]->close();
+                            unset($this->connections[$message->user]);
+                        }
+                    }
+                }
+                break;
+
+            case'getUserList':
+                if ($conn->isAdmin) {
+                    $conn->send(json_encode([
+                        'type' => 'updateUserList',
+                        'userList' => $this->UserService->getAllUsersArray()
+                    ]));
+                }
+                break;
 
 
         }
-
 
 
     }

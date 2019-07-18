@@ -1,5 +1,6 @@
 import React from 'react';
-import UserList from './UserList';
+import OnlineList from './OnlineList';
+import Admin from './Admin';
 
 class Chat extends React.Component{
     conn ;
@@ -9,7 +10,9 @@ class Chat extends React.Component{
         this.state={
             onlineList:[],
             messages:[],
-            inputMessage:''
+            inputMessage:'',
+            admin:false,
+            userList: []
         }
     }
 
@@ -27,30 +30,38 @@ class Chat extends React.Component{
 
             switch(message.type){
                 case'oldMessages':
+                    console.log('oldMessages');
                     this.setState({
                         messages: message.messages
 
                     })
                     break
                 case 'message':
-                    if(message.status==='output'){
+
                         this.setState({
                             messages: [ ...this.state.messages,  message]
                         })
 
-                    }
+
                     break
 
                 case 'updateOnlineList':
+
                     this.setState({
                         onlineList: message.onlineList
 
                     })
                     break
+                case 'updateUserList':
+
+                    this.setState({
+                        userList: message.userList
+
+                    })
+                    break
                 case 'admin':
-                    //console.log(message.userList);
                      this.setState({
-                         userList: message.userList
+                         admin: true
 
                      })
                     break
@@ -74,7 +85,6 @@ class Chat extends React.Component{
     handleSend= function(e){
         const obj={
             type:"message",
-            status:"input",
             content:this.state.inputMessage
         };
         this.conn.send(JSON.stringify(obj));
@@ -84,15 +94,21 @@ class Chat extends React.Component{
 
     changeMutedStatus= (userId) =>{
         const obj={
-            type:"chengeMuted",
+            type:"changeMuted",
             user:userId
         };
         this.conn.send(JSON.stringify(obj))
     }
     changeBannedStatus= (userId) =>{
         const obj={
-            type:"chengeBanned",
+            type:"changeBanned",
             user:userId
+        };
+        this.conn.send(JSON.stringify(obj))
+    }
+    getUserList= () =>{
+        const obj={
+            type:"getUserList",
         };
         this.conn.send(JSON.stringify(obj))
     }
@@ -104,17 +120,18 @@ class Chat extends React.Component{
 
 
             <div>
-                { this.state.userList && (
-                    <Admin list={this.state.userList} />
+                { this.state.admin && (
+                    <Admin
+                        userList={this.state.userList}
+                        getUserList={this.getUserList}
+                        changeMuted={this.changeMutedStatus}
+                        changeBanned={this.changeBannedStatus}
+                    />
                 ) }
 
 
                 <div className="onlineList">
-                    <UserList onlineList={this.state.onlineList}
-                              userList={this.state.userList}
-                              chanheMuted={this.changeMutedStatus}
-                              changeBanned={this.changeBannedStatus}
-                    />
+                    <OnlineList onlineList={this.state.onlineList}/>
                 </div>
                 <div className="dinamicChat">
                     <ul>
@@ -142,12 +159,8 @@ class Chat extends React.Component{
     }
 }
 
-function Admin(props){
 
-   return (
-       <button>Admin</button>
-   )
-}
 
 
 export default Chat;
+

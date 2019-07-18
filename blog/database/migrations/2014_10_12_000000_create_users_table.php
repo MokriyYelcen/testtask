@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('login');
             $table->string('password');
-            $table->string('token');
+            $table->string('token')->nullable(true);
             $table->bigInteger('color_id')->unsigned()->nullable(true);
             $table->boolean('isAdmin')->default(false);
             $table->boolean('muted')->default(false);
