@@ -32,10 +32,10 @@ class WebSocketController extends Controller implements MessageComponentInterfac
      */
     function onOpen(ConnectionInterface $conn)
     {
-
         $user = $this->UserService->getUserByConnection($conn);
 
         if ($user && !$user->banned) {
+//            $conn->user = $user;
 
             $conn->username = $user->login;
             if ($this->UserService->isAdmin($user->id)) {
@@ -43,18 +43,16 @@ class WebSocketController extends Controller implements MessageComponentInterfac
                 $conn->send(json_encode([
                     'type' => 'admin',
                 ]));
-
             }
 
 
             $this->connections[$user->id] = $conn;
-
-
             $onlineList = [];
+
             foreach ($this->connections as $peer) {
                 $onlineList[] = $peer->username;
-
             }
+
             $conn->send(json_encode([
                 'type' => 'oldMessages',
                 'messages' => $this->MessageService->getLastMessages()
@@ -64,8 +62,6 @@ class WebSocketController extends Controller implements MessageComponentInterfac
                 $peer->send(json_encode([
                     'type' => 'updateOnlineList',
                     'onlineList' => $onlineList
-
-
                 ]));
             }
         } else {
@@ -81,7 +77,6 @@ class WebSocketController extends Controller implements MessageComponentInterfac
      */
     function onClose(ConnectionInterface $conn)
     {
-
         $user = $this->UserService->getUserByConnection($conn);
         unset($this->connections[$user->id]);
 
@@ -130,68 +125,97 @@ class WebSocketController extends Controller implements MessageComponentInterfac
         switch ($message->type) {
             case'message':
                 Log::debug($msg);
-                $fail=$this->MessageService->validateMessage($user,$message);
-                Log::debug($fail);
-                if(!$fail){
-                    $this->MessageService->saveMessage($user->id, $message->content);
-                    foreach ($this->connections as $peer) {
-                        $peer->send(json_encode([
-                            'type' => 'message',
-                            'sent' => date("Y-m-d H:i:s"),
-                            'author' => $user->login,
-                            'content' => $message->content
 
-                        ]));
-                    }
-                }
-                else{
-                    $conn->send(json_encode([
+                if (!$fail=$this->MessageService->validateMessage($user,$message)){
+                    Log::debug($fail);
+
+                    $this->send($conn, [
                         'type' => 'message',
                         'sent' => date("Y-m-d H:i:s"),
                         'author' => 'System',
                         'content' => $fail
+                    ]);
 
-                    ]));
+                    return;
                 }
+                
+                $this->MessageService->saveMessage($user->id, $message->content);
+
+                $this->sendToAll([
+                    'type' => 'message',
+                    'sent' => date("Y-m-d H:i:s"),
+                    'author' => $user->login,
+                    'content' => $message->content,
+                    'color'=>$this->MessageService->getUserMessageColor($user->id)
+                ]);
+
                 break;
 
             case 'changeMuted':
-                if ($conn->isAdmin) {
-                    $this->UserService->changeMuted($message->user);
-                    foreach ($this->UserService->filterAdmins($this->connections) as $adminPeer) {
-                        $adminPeer->send(json_encode([
-                            'type' => 'updateUserList',
-                            'userList' => $this->UserService->getAllUsersArray()
-                        ]));
-                    }
+                Log::debug('changeMuted');
 
+                if (!$conn->isAdmin) {
+                    return;
                 }
+
+                Log::debug('isAdmin');
+                $this->UserService->changeMuted($message->user);
+
+                $this->toAdmins([
+                    'type' => 'updateUserList',
+                    'userList' => $this->UserService->getAllUsersArray()
+                ]);
+
                 break;
 
             case 'changeBanned':
-                Log::debug('changeBanned');
-                if ($conn->isAdmin) {
-                    Log::debug('isAdmin');
-                    $pastBannedStatus=$this->UserService->getUserById($message->user)->banned;
-                    Log::debug('$pastBannedStatus' . $pastBannedStatus);
-                    $this->UserService->changeBanned($message->user);
-                    Log::debug('changeBanned fired');
-                    Log::debug('connections');
-                    Log::debug($this->connections[1]);
-                    foreach ($this->UserService->filterAdmins($this->connections) as $adminPeer) {
-                        Log::debug('Adminpeer ==='.$adminPeer);
-                        $adminPeer->send(json_encode([
-                            'type' => 'updateUserList',
-                            'userList' => $this->UserService->getAllUsersArray()
-                        ]));
-                    }
-                    if(!$pastBannedStatus){
-                        if ($this->connections[$message->user]) {
+                if (!$conn->isAdmin) {
+                    return;
+                }
+
+                $target = $this->UserService->getUserById($message->user);
+
+//                if ($conn->isAdmin) {
+                if($user->id != $target->id){
+                    if(!$pastBannedStatus=$target->banned){
+                        if (array_key_exists($message->user,$this->connections)) {
                             $this->connections[$message->user]->close();
                             unset($this->connections[$message->user]);
+                        }else{
+                            Log::debug('pastBannedStatus : '. $pastBannedStatus.'+'.'User i snot connected now');
                         }
                     }
+
+                    $this->UserService->changeBanned($message->user);
+                }else{
+                    $this->send($conn,[
+                        'type' => 'message',
+                        'sent' => date("Y-m-d H:i:s"),
+                        'author' => 'System',
+                        'content' => 'suicide is not an option'
+
+                    ]);
                 }
+
+//                }
+
+            $this->toAdmins([
+                'type' => 'updateUserList',
+                'userList' => $this->UserService->getAllUsersArray()
+            ]);
+
+//                foreach($this->connections as $id=> $peer){
+//                    if($peer->isAdmin){
+//                            Log::debug('Admin peer ==='.$peer->isAdmin);
+//                            $peer->send(json_encode([
+//                                'type' => 'updateUserList',
+//                                'userList' => $this->UserService->getAllUsersArray()
+//                            ]));
+//                        Log::debug('sent to==='.$id);
+//                        }
+//
+//                }
+
                 break;
 
             case'getUserList':
@@ -208,4 +232,66 @@ class WebSocketController extends Controller implements MessageComponentInterfac
 
 
     }
+
+    public function toAdmins($data){
+        foreach($this->connections as $id=> $peer){
+            if($peer->isAdmin){
+                Log::debug('Admin peer ==='.$peer->isAdmin);
+                $peer->send(json_encode($data));
+                Log::debug('sent to==='.$id);
+            }
+
+        }
+    }
+
+    public function send($conn, $data){
+        $conn->send(json_encode($data));
+    }
+
+    public function sendToAll($data){
+        foreach ($this->connections as $peer) {
+            $peer->send(json_encode($data));
+        }
+    }
 }
+/*
+ * Log::debug('changeBanned');
+                Log::debug('Before the changeBanned methos array connections '.count($this->connections));
+                foreach ($this->connections as $id =>$peer) {
+                    Log::debug($id.'==='.$peer);
+//                        if($peer->isAdmin){
+//                            Log::debug('Admin peer ==='.$peer->isAdmin);
+//                            $peer->send(json_encode([
+//                                'type' => 'updateUserList',
+//                                'userList' => $this->UserService->getAllUsersArray()
+//                            ]));
+//                        }
+
+                }
+                if ($conn->isAdmin) {
+                    Log::debug('isAdmin');
+                    $pastBannedStatus=$this->UserService->getUserById($message->user)->banned;
+                    Log::debug('$pastBannedStatus' . $pastBannedStatus);
+                    Log::debug('Before the changeBanned methos array connections '.count($this->connections).'elements the first'.$this->connections[1]);
+                    $this->UserService->changeBanned($message->user);
+                    Log::debug('changeBanned fired');
+                    Log::debug('connections '.count($this->connections));
+                    Log::debug($this->connections[1]);
+                    foreach ($this->connections as $id =>$peer) {
+                        Log::debug($id.'==='.$peer);
+//                        if($peer->isAdmin){
+//                            Log::debug('Admin peer ==='.$peer->isAdmin);
+//                            $peer->send(json_encode([
+//                                'type' => 'updateUserList',
+//                                'userList' => $this->UserService->getAllUsersArray()
+//                            ]));
+//                        }
+
+                    }
+//                    if(!$pastBannedStatus){
+//                        if ($this->connections[$message->user]) {
+//                            $this->connections[$message->user]->close();
+//                            unset($this->connections[$message->user]);
+//                        }
+//                    }
+                }*/

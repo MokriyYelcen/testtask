@@ -21,54 +21,74 @@ class UserService
         return User::find($id);
     }
 
-    function getUserByConnection($conn){
-        $token = $conn->httpRequest->getUri()->getQuery();
-        $Users=User::where('token',$token);
-        if($Users->count()==1){
-            return $Users->first();
-        }
-        return false;
+    function getUserByConnection(ConnectionInterface $conn){
+//        $token = $conn->httpRequest->getUri()->getQuery();
+        $Users = User::where(
+            'token',
+            $conn->httpRequest->getUri()->getQuery()
+        );
 
+//        if($Users->count()==1){
+//            return $Users->first();
+//        }
 
+        return $Users->count() === 1 ? $Users->first() : false;
     }
 
-
-
     function isAdmin(int $id){
-        $probablyAdmin=User::find($id);
-        if($probablyAdmin->isAdmin===1){
-            return true;
-        }
-        return false;
+        $probablyAdmin = User::find($id);
+
+//        if($probablyAdmin->isAdmin===1){
+//            return true;
+//        }
+
+        return ($probablyAdmin->isAdmin===1);
 
     }
     function getAllUsersArray(){
-        $res=[];
-        $Users=User::all();
-        foreach($Users as $user){
-            $res[]=[
+//        $res=[];
+//        $Users=User::all();
+
+        return User::all()->map(function($user){
+            return [
                 'id'=>$user->id,
                 'username'=>$user->login,
                 'banned'=>$user->banned,
                 'muted'=>$user->muted
             ];
-        }
-        return $res;
+        });
+
+//        foreach($Users as $user){
+//            $res[]=[
+//                'id'=>$user->id,
+//                'username'=>$user->login,
+//                'banned'=>$user->banned,
+//                'muted'=>$user->muted
+//            ];
+//        }
+//
+//        return $res;
     }
 
     function changeBanned($id){
-        $targetUser=User::find($id);
-        $was=$targetUser->banned;
-        $targetUser->banned=!($was);
-        $targetUser->save();
+        /** @var User $targetUser */
+        if ($targetUser = User::find($id)){
+            $was = $targetUser->banned;
+            $targetUser->banned = !($was);
 
+            return $targetUser->save();
+        }
+
+        return false;
     }
+
     function changeMuted($id){
         $targetUser=User::find($id);
         $was=$targetUser->muted;
         $targetUser->muted=!($was);
         $targetUser->save();
     }
+
     function filterAdmins(Array $connections){
         return array_filter($connections,function( $el){return $el->isAdmin;});
     }

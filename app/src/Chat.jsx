@@ -4,9 +4,11 @@ import Admin from './Admin';
 
 class Chat extends React.Component{
     conn ;
+
     constructor(props){
         super(props);
         this.conn=new WebSocket('ws://localhost:8090?' + this.props.token);
+
         this.state={
             onlineList:[],
             messages:[],
@@ -16,16 +18,13 @@ class Chat extends React.Component{
         }
     }
 
-
     componentDidMount() {
-
-
         this.conn.onopen = function(e) {
             console.log("Connection established!");
 
         };
 
-        this.conn.onmessage = function(e) {
+        this.conn.onmessage = (e) => {
             const message=JSON.parse(e.data);
 
             switch(message.type){
@@ -37,28 +36,27 @@ class Chat extends React.Component{
                     })
                     break
                 case 'message':
-
                         this.setState({
                             messages: [ ...this.state.messages,  message]
                         })
 
-
-                    break
+                    break;
 
                 case 'updateOnlineList':
-
                     this.setState({
                         onlineList: message.onlineList
 
-                    })
-                    break
-                case 'updateUserList':
+                    });
 
+                    break;
+                case 'updateUserList':
                     this.setState({
                         userList: message.userList
 
-                    })
-                    break
+                    });
+
+                    break;
+
                 case 'admin':
                      this.setState({
                          admin: true
@@ -69,11 +67,13 @@ class Chat extends React.Component{
                 default:
                     console.log('default worked');
 
-
-
             }
 
-        }.bind(this);
+        };//.bind(this);
+
+        this.conn.onclose= function(e){
+            localStorage.clear();
+        };
 
     }
 
@@ -112,6 +112,12 @@ class Chat extends React.Component{
         };
         this.conn.send(JSON.stringify(obj))
     }
+    exit= ()=>{
+        this.conn.close();
+        localStorage.clear();
+        window.location.reload()
+    }
+
 
 
 
@@ -119,38 +125,67 @@ class Chat extends React.Component{
         return (
 
 
-            <div>
-                { this.state.admin && (
-                    <Admin
-                        userList={this.state.userList}
-                        getUserList={this.getUserList}
-                        changeMuted={this.changeMutedStatus}
-                        changeBanned={this.changeBannedStatus}
-                    />
-                ) }
-
-
-                <div className="onlineList">
-                    <OnlineList onlineList={this.state.onlineList}/>
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <h1 onClick={this.exit}>{localStorage.getItem('username')}</h1>
+                    </div>
                 </div>
-                <div className="dinamicChat">
-                    <ul>
-                        {this.state.messages.map((message,index) => <li key={index}>
-                            {message.sent.substr(11, 12)} -- {message.author} : {message.content}
-                        </li>)}
-                    </ul>
+                <div className="row">
+                    <div className="col-4">
+                        { this.state.admin && (
+                            <Admin
+                                userList={this.state.userList}
+                                getUserList={this.getUserList}
+                                changeMuted={this.changeMutedStatus}
+                                changeBanned={this.changeBannedStatus}
+                            />
+                        ) }
+                        <div className="onlineList">
+                            <OnlineList onlineList={this.state.onlineList}/>
+                        </div>
+                    </div>
+                    <div className="col-auto">
+                        <div className="row">
+
+                            <div className="dinamicChat">
+                                <ul>
+                                    {this.state.messages.map((message,index) => <li key={index} style={{ background: '#ececec', color: message.color }}>
+                                        {message.sent.substr(11, 12)} -- {message.author} : {message.content}
+                                    </li>)}
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-group mb-3">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Recipient's username"
+                                    aria-label="Recipient's username"
+                                    aria-describedby="button-addon2"
+                                    onChange={this.handleChange}
+                                    name="inputMessage"
+                                    value={this.state.inputMessage}
+                                ></input>
+                                <div className="input-group-append">
+                                    <button
+                                        className="btn btn-outline-secondary"
+                                        type="button"
+                                        id="button-addon2"
+                                        onClick={this.handleSend.bind(this)}
+                                    >
+                                        Send
+
+                                    </button>
+                                    </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-                <h1>{this.props.username}</h1>
-                <button
-                    onClick={this.handleSend.bind(this)} >send</button>
-                <textarea
-                    onChange={this.handleChange}
-                    name="inputMessage"
-                    value={this.state.inputMessage}
-                >
 
-                </textarea>
 
             </div>
 

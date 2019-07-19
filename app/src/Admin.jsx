@@ -6,14 +6,13 @@ class Admin extends React.Component{
         this.state={
             showing:false
         }
-
-
     }
 
     changeBanned=function(e){
         //console.log(e.target.getAttribute('userid'))
         this.props.changeBanned(e.target.getAttribute('userid'))
     }
+
     changeMuted=function(e){
         //console.log(e.target.getAttribute('userid'))
         this.props.changeMuted(e.target.getAttribute('userid'))
@@ -33,12 +32,8 @@ class Admin extends React.Component{
                     showing:false
                 });
                 break
-
         }
-
-
     }
-
 
     render(){
         return (
@@ -47,11 +42,31 @@ class Admin extends React.Component{
             onClick={this.showList.bind(this)}
         >{(this.state.showing && 'Hide admin list')||'Show admin list'}</button>
 
-                {this.state.showing === true && (<ol>
-                    {this.props.userList.map((user,index) => <li key={index}>
+                {this.state.showing === true && (<ol
+                    className="list-group"
+                >
+                    {this.props.userList.map((user,index) =>
+                        <li
+                        key={index}
+                        className="list-group-item"
+
+                        >
                         {user.username} -->
-                        <button userid={user.id} onClick={this.changeBanned.bind(this)}>{(user.banned && "unban")||"ban"}</button>-
-                        <button userid={user.id} onClick={this.changeMuted.bind(this)}>{(user.muted && "unmute")||"mute"}</button>
+                        <button
+
+                            className="btn btn-outline-danger"
+                            userid={user.id}
+                            onClick={this.changeBanned.bind(this)}
+                        >
+                            {(user.banned && "unban")||"ban"}
+                        </button>-
+                        <button
+                            className="btn btn-outline-secondary"
+                            userid={user.id}
+                            onClick={this.changeMuted.bind(this)}
+                        >
+                            {(user.muted && "unmute")||"mute"}
+                        </button>
 
                     </li>)}
                 </ol>)}

@@ -6,7 +6,7 @@ use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\User;
+use App\{User,color};
 
 class LoginController extends Controller
 {
@@ -20,13 +20,21 @@ class LoginController extends Controller
         if($users->count()==1){
             $user=$users->firstOrFail();
             if($user->password==$request['password']){
-                $newToken=Str::random(32);
-                $user->token=$newToken;
-                $user->save();
-                return response()->json(['token' => $newToken]);
+                if(!$user->banned){
+                    $newToken=Str::random(32);
+                    $user->token=$newToken;
+                    $newColorId=color::inRandomOrder()->first()->id;
+                    $user->color_id=$newColorId;
+                    $user->save();
+                    return response()->json(['token' => $newToken]);
+                }
+                else{
+                    return response('{"wrong":"you are banned"}',401);
+                }
+
             }
             else{
-                return response('{"wrong":"password"}',401);
+                return response('{"wrong":"wrong password"}',401);
             }
 
         }
@@ -36,6 +44,8 @@ class LoginController extends Controller
             $newUser->password=$request['password'];
             $newToken=Str::random(32);
             $newUser->token=$newToken;
+            $newColorId=color::inRandomOrder()->first()->id;
+            $newUser->color_id=$newColorId;
             $newUser->save();
             return response()->json(['token' => $newToken]);
 

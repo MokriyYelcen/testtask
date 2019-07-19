@@ -2,8 +2,7 @@
 
 
 namespace App\ChatServices\WebSocketServices;
-use App\Message;
-use App\User;
+use App\{User,Message,color};
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
@@ -74,5 +73,11 @@ class MessageService
 
         Log::debug('return true from ableToSend ');
         return true;
+    }
+
+    public function getUserMessageColor($id){
+        $colorId=User::find($id)->color_id;
+
+        return color::find($colorId)->name;
     }
 }

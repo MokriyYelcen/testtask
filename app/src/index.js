@@ -77,6 +77,7 @@ class Login extends React.Component {
             );
 
             localStorage.setItem('token', JSON.stringify(response.data))
+            localStorage.setItem('username', username)
 
         })
             .catch((reason) =>{
@@ -92,41 +93,43 @@ class Login extends React.Component {
             return <Chat token={this.state.token} username={this.state.username}/>
         }
         return (
-            <div className="content">
+            <div className="content ">
 
-                <form className="form" action="">
-                    <div className="form-row"><h1>Login Page</h1></div>
-                    <div className="form-row">Username:
+               <div className="row d-flex justify-content-center">
+                   <form className="col-12 col-md-6 col-lg-4" action="">
+                       <div className="form-row"><h1>Login Page</h1></div>
+                       <div className="form-row">Username:
 
-                        <input
-                            className={cn('form-input-text', { invalid: this.state.validations.username })}
-                            type="text"
-                            name="username"
-                            value={this.state.username}
-                            onChange={this.handleChange}
-                        />
+                           <input
+                               className={cn('form-input-text', 'form-control', { invalid: this.state.validations.username })}
+                               type="text"
+                               name="username"
+                               value={this.state.username}
+                               onChange={this.handleChange}
+                           />
 
-                    </div>
-                    <div className="form-row">Password:
-                        <input
-                            className={cn('form-input-text', { invalid: this.state.validations.password })}
-                            type="password"
-                            name="password"
-                            value={this.state.password}
-                            onChange={this.handleChange}
-                        />
-                        <div
-                            className={cn({pass_hint_none: !(this.state.wrong)},{pass_hint_visible: this.state.wrong})}
-                        >incorrect password</div>
-                    </div>
-                    <div className="form-row">
-                        <button
-                            className="form-input-submit"
-                            value="Login"
-                            onClick={this.handleSubmit}
-                        >Login</button>
-                    </div>
-                </form>
+                       </div>
+                       <div className="form-row">Password:
+                           <input
+                               className={cn('form-input-text', 'form-control', { invalid: this.state.validations.password })}
+                               type="password"
+                               name="password"
+                               value={this.state.password}
+                               onChange={this.handleChange}
+                           />
+                           <div
+                               className={cn({pass_hint_none: !(this.state.wrong)},{pass_hint_visible: this.state.wrong})}
+                           >{this.state.wrong}</div>
+                       </div>
+                       <div className="form-row justify-content-center">
+                           <button
+                               className="btn btn-outline-primary"
+                               value="Login"
+                               onClick={this.handleSubmit}
+                           >Login</button>
+                       </div>
+                   </form>
+               </div>
 
             </div>
         );

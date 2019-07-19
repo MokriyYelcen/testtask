@@ -7,8 +7,12 @@ class OnlineList extends React.Component{
 
     render(){
             return (
-                <ol>
-                    {this.props.onlineList.map((user,index) => <li key={index}>
+                <ol className="list-group">
+                    {this.props.onlineList.map((user,index) =>
+                        <li
+                        key={index}
+                        className="list-group-item"
+                    >
                         {user}
                     </li>)}
                 </ol>
