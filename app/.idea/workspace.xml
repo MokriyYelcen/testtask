@@ -2,19 +2,126 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="233816c0-9487-4cb0-affe-2d658527d5ef" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Admin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Chat.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OnlineList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/OnlineList.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/.idea/blog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/.idea/blog.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/.idea/dataSources/5dc536d3-792a-46d4-ac02-780ada827b87.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/.idea/dataSources/5dc536d3-792a-46d4-ac02-780ada827b87.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../blog/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/.styleci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/.styleci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../blog/app/ChatServices/WebSocketServices/MessageService.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/ChatServices/WebSocketServices/MessageService.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../blog/app/ChatServices/WebSocketServices/UserService.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/ChatServices/WebSocketServices/UserService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/ChatServices/WebSocketServices/onCloseService.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/ChatServices/WebSocketServices/onCloseService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/ChatServices/WebSocketServices/onErrorService.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/ChatServices/WebSocketServices/onErrorService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Console/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Exceptions/Handler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Game.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Game.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Controllers/Auth/ForgotPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Controllers/Auth/ForgotPasswordController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Controllers/Auth/ResetPasswordController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Controllers/Auth/ResetPasswordController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Controllers/Auth/VerificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Controllers/Auth/VerificationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Controllers/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Controllers/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Controllers/GameController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../blog/app/Http/Controllers/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Controllers/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Controllers/WebSocketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Controllers/WebSocketController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Middleware/Authenticate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Middleware/CheckForMaintenanceMode.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Middleware/CheckForMaintenanceMode.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Middleware/EncryptCookies.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Middleware/EncryptCookies.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Middleware/TrimStrings.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Middleware/TrimStrings.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Middleware/TrustProxies.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Middleware/TrustProxies.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Middleware/VerifyCsrfToken.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Middleware/VerifyCsrfToken.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Requests/GameRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Requests/GameRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Http/Requests/LoginRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Http/Requests/LoginRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Providers/AuthServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Providers/BroadcastServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Providers/BroadcastServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Providers/EventServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Providers/EventServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/Providers/RouteServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/app/color.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/app/color.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/bootstrap/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/bootstrap/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/bootstrap/cache/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/bootstrap/cache/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/config/auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/config/broadcasting.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/config/broadcasting.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/config/cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/config/cache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/config/cors.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/config/cors.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/config/filesystems.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/config/hashing.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/config/hashing.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/config/logging.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/config/logging.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/config/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/config/mail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/config/queue.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/config/queue.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/config/services.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/config/services.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/config/session.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/config/session.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/config/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/config/view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/database/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/database/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/database/factories/UserFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/database/migrations/2014_07_15_124727_create_colors_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/database/migrations/2014_07_15_124727_create_colors_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/database/migrations/2014_10_12_100000_create_password_resets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/database/migrations/2019_07_08_153653_create_games_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/database/migrations/2019_07_08_153653_create_games_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../blog/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/phpunit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/public/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/public/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/public/robots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/public/robots.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/public/web.config" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/public/web.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/resources/js/components/Example.js" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/resources/js/components/Example.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/resources/lang/en/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/resources/lang/en/auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/resources/lang/en/pagination.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/resources/lang/en/pagination.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/resources/lang/en/passwords.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/resources/lang/en/passwords.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/resources/lang/en/validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/resources/lang/en/validation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/resources/sass/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/resources/sass/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/routes/channels.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/routes/channels.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/routes/console.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/routes/console.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/server.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/server.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/tests/CreatesApplication.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/tests/CreatesApplication.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/tests/Feature/ExampleTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/tests/Feature/ExampleTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/tests/TestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/tests/TestCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/tests/Unit/ExampleTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/tests/Unit/ExampleTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../blog/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/../blog/webpack.mix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../chat/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,11 +136,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1185">
-              <caret line="79" column="54" lean-forward="true" selection-start-line="79" selection-start-column="54" selection-end-line="79" selection-end-column="54" />
+            <state relative-caret-position="269">
+              <caret line="64" column="46" lean-forward="true" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="46" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -45,7 +152,7 @@
         <entry file="file://$PROJECT_DIR$/src/Chat.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="170" column="68" lean-forward="true" selection-start-line="170" selection-start-column="68" selection-end-line="170" selection-end-column="68" />
+              <caret line="9" column="53" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="53" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -74,8 +181,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Admin.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+            <state relative-caret-position="-16">
+              <caret line="44" column="17" lean-forward="true" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../HelloWorldVue.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="990">
+              <caret line="66" column="6" selection-start-line="66" selection-start-column="6" selection-end-line="66" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="30" lean-forward="true" selection-end-line="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file:///etc/apache2/apache2.conf">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="248">
+              <caret line="169" column="19" lean-forward="true" selection-start-line="169" selection-start-column="19" selection-end-line="169" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -86,6 +220,7 @@
     <findStrings>
       <find>console.log</find>
       <find>room</find>
+      <find>root</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -103,11 +238,13 @@
         <option value="$PROJECT_DIR$/src/OnlineList.jsx" />
         <option value="$PROJECT_DIR$/src/Admin.jsx" />
         <option value="$PROJECT_DIR$/src/Chat.jsx" />
+        <option value="$PROJECT_DIR$/../../index.html" />
+        <option value="$PROJECT_DIR$/../../HelloWorldVue.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2311" />
+    <option name="x" value="2039" />
     <option name="width" value="1386" />
     <option name="height" value="1005" />
   </component>
@@ -120,33 +257,13 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="app" type="b2602c69:ProjectViewProjectNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../blog" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../testvue" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -190,16 +307,17 @@
       <workItem from="1563469790017" duration="742000" />
       <workItem from="1563471596895" duration="120000" />
       <workItem from="1563521336760" duration="16181000" />
+      <workItem from="1563780067632" duration="10489000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124146000" />
+    <option name="totallyTimeSpent" value="134635000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1916" y="0" width="1928" height="1084" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2782516" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28144988" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -252,27 +370,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" column="114" selection-start-line="23" selection-start-column="114" selection-end-line="23" selection-end-column="114" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="8" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Chat.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="170" column="68" lean-forward="true" selection-start-line="170" selection-start-column="68" selection-end-line="170" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -285,18 +386,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Admin.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+        <state relative-caret-position="-16">
+          <caret line="44" column="17" lean-forward="true" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="30" lean-forward="true" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../HelloWorldVue.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="66" column="6" selection-start-line="66" selection-start-column="6" selection-end-line="66" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Chat.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="53" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1185">
-          <caret line="79" column="54" lean-forward="true" selection-start-line="79" selection-start-column="54" selection-end-line="79" selection-end-column="54" />
+        <state relative-caret-position="269">
+          <caret line="64" column="46" lean-forward="true" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="46" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///etc/apache2/apache2.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="169" column="19" lean-forward="true" selection-start-line="169" selection-start-column="19" selection-end-line="169" selection-end-column="19" />
         </state>
       </provider>
     </entry>
