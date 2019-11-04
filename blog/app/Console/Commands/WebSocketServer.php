@@ -8,6 +8,7 @@ use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
 use App\Http\Controllers\WebSocketController;
 
+
 class WebSocketServer extends Command
 {
     /**
@@ -24,13 +25,17 @@ class WebSocketServer extends Command
      */
     protected $description = 'Initializing Websocket server to receive and manage connections';
 
+    protected $wbController;
+
     /**
      * Create a new command instance.
+     * WebSocketController
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(WebSocketController $wbController)
     {
+        $this->wbController = $wbController;
         parent::__construct();
     }
 
@@ -44,12 +49,11 @@ class WebSocketServer extends Command
         $server = IoServer::factory(
             new HttpServer(
                 new WsServer(
-                    new WebSocketController()
+                    $this->wbController
                 )
             ),
             8090
         );
         $server->run();
-
     }
 }

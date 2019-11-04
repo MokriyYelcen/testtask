@@ -1,6 +1,7 @@
 <?php
 
-/**
+try{
+	/**
  * Laravel - A PHP Framework For Web Artisans
  *
  * @package  Laravel
@@ -58,3 +59,8 @@ $response = $kernel->handle(
 $response->send();
 
 $kernel->terminate($request, $response);
+
+}
+catch(Exception $e){
+ echo $e->getMessage();
+}

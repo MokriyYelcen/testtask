@@ -1,33 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="867eafa3-a55b-438e-9339-8416f87d5e3a" name="Default Changelist" comment="" />
-    <ignored path="$PROJECT_DIR$/.tmp/" />
-    <ignored path="$PROJECT_DIR$/temp/" />
-    <ignored path="$PROJECT_DIR$/tmp/" />
+    <list default="true" id="867eafa3-a55b-438e-9339-8416f87d5e3a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/app/ChatServices/WebSocketServices/MessageRouter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/app/Facades/MessageRouterFacade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/app/Http/Controllers/TestController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/app/Providers/WebSocketServiceProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/config/webSocket.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blog/routes/webSocket.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/html.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/html.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/.env.example" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/app/ChatServices/WebSocketServices/MessageService.php" beforeDir="false" afterPath="$PROJECT_DIR$/blog/app/ChatServices/WebSocketServices/MessageService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/app/Console/Commands/WebSocketServer.php" beforeDir="false" afterPath="$PROJECT_DIR$/blog/app/Console/Commands/WebSocketServer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/app/Http/Controllers/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/blog/app/Http/Controllers/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/app/Http/Controllers/WebSocketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/blog/app/Http/Controllers/WebSocketController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/app/Message.php" beforeDir="false" afterPath="$PROJECT_DIR$/blog/app/Message.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/blog/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/blog/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/blog/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/blog/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/blog/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/blog/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/blog/routes/web.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/blog/composer.json</pharConfigPath>
     <execution>
       <executable />
     </execution>
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/login_page.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL for 5.1 - chat@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL for 5.1 - chat@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL for 5.1 - chat@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="chat: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="MySQL for 5.1 - chat@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="chat: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="messages: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+    </expand>
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -36,45 +87,124 @@
       </list>
     </option>
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/login_page.html" />
-        <option value="$PROJECT_DIR$/index.php" />
-      </list>
-    </option>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="38" />
-    <option name="y" value="64" />
-    <option name="width" value="1400" />
-    <option name="height" value="1000" />
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/blog/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/blog/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/blog/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/blog/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/blog/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/blog/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/blog/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/blog/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/blog/vendor/nunomaduro/collision" />
+      <path value="$PROJECT_DIR$/blog/vendor/phpunit/php-token-stream" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/blog/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/blog/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/blog/vendor/beyondcode/laravel-dump-server" />
+      <path value="$PROJECT_DIR$/blog/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/blog/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/blog/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/blog/vendor/opis/closure" />
+      <path value="$PROJECT_DIR$/blog/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/polyfill-iconv" />
+      <path value="$PROJECT_DIR$/blog/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/polyfill-intl-idn" />
+      <path value="$PROJECT_DIR$/blog/vendor/barryvdh/laravel-cors" />
+      <path value="$PROJECT_DIR$/blog/vendor/fzaninotto/faker" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/http-kernel" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/routing" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/blog/vendor/evenement/evenement" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/blog/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/event-dispatcher-contracts" />
+      <path value="$PROJECT_DIR$/blog/vendor/asm89/stack-cors" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/http-foundation" />
+      <path value="$PROJECT_DIR$/blog/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/blog/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/blog/vendor/laravel/tinker" />
+      <path value="$PROJECT_DIR$/blog/vendor/laravel/framework" />
+      <path value="$PROJECT_DIR$/blog/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/blog/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/blog/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/blog/vendor/tijsverkoyen/css-to-inline-styles" />
+      <path value="$PROJECT_DIR$/blog/vendor/fideloper/proxy" />
+      <path value="$PROJECT_DIR$/blog/vendor/vlucas/phpdotenv" />
+      <path value="$PROJECT_DIR$/blog/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/blog/vendor/dragonmantank/cron-expression" />
+      <path value="$PROJECT_DIR$/blog/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/blog/vendor/erusev/parsedown" />
+      <path value="$PROJECT_DIR$/blog/vendor/dnoegel/php-xdg-base-dir" />
+      <path value="$PROJECT_DIR$/blog/vendor/league/flysystem" />
+      <path value="$PROJECT_DIR$/blog/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/blog/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/blog/vendor/composer" />
+      <path value="$PROJECT_DIR$/blog/vendor/mockery/mockery" />
+      <path value="$PROJECT_DIR$/blog/vendor/jakub-onderka/php-console-highlighter" />
+      <path value="$PROJECT_DIR$/blog/vendor/jakub-onderka/php-console-color" />
+      <path value="$PROJECT_DIR$/blog/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/blog/vendor/egulias/email-validator" />
+      <path value="$PROJECT_DIR$/blog/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/blog/vendor/ratchet/rfc6455" />
+      <path value="$PROJECT_DIR$/blog/vendor/react/cache" />
+      <path value="$PROJECT_DIR$/blog/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/blog/vendor/react/stream" />
+      <path value="$PROJECT_DIR$/blog/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/blog/vendor/react/dns" />
+      <path value="$PROJECT_DIR$/blog/vendor/hamcrest/hamcrest-php" />
+      <path value="$PROJECT_DIR$/blog/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/blog/vendor/react/promise-timer" />
+      <path value="$PROJECT_DIR$/blog/vendor/cboden/ratchet" />
+      <path value="$PROJECT_DIR$/blog/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/blog/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/blog/vendor/react/promise" />
+      <path value="$PROJECT_DIR$/blog/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/blog/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/blog/vendor/react/socket" />
+      <path value="$PROJECT_DIR$/blog/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/blog/vendor/react/event-loop" />
+      <path value="$PROJECT_DIR$/blog/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/blog/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/blog/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/blog/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/blog/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/blog/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/blog/vendor/psy/psysh" />
+      <path value="$PROJECT_DIR$/blog/vendor/ramsey/uuid" />
+      <path value="$PROJECT_DIR$/blog/vendor/phpunit/phpunit" />
+    </include_path>
   </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="html" type="b2602c69:ProjectViewProjectNode" />
-              <item name="html" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectId" id="1STR2qPpKb3xzW6gD68VplbDelV" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/blog" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -98,6 +228,16 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand />
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -111,53 +251,31 @@
       <workItem from="1562576429745" duration="337000" />
       <workItem from="1562584715999" duration="2609000" />
       <workItem from="1562592386861" duration="2338000" />
+      <workItem from="1570297317634" duration="141000" />
+      <workItem from="1571585400848" duration="11855000" />
+      <workItem from="1571598316120" duration="7606000" />
+      <workItem from="1572188983518" duration="25837000" />
+      <workItem from="1572823919399" duration="3544000" />
     </task>
     <servers />
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5284000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-4" y="0" width="1928" height="1084" extended-state="6" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
-    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="65" selection-start-line="6" selection-start-column="65" selection-end-line="6" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/login_page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

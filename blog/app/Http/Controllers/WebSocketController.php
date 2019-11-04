@@ -6,21 +6,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
+use App\Facades\MessageRouterFacade as Message;
 use App\ChatServices\WebSocketServices\{UserService, MessageService};
-
 
 class WebSocketController extends Controller implements MessageComponentInterface
 {
-    private $connections = [];
+    public $connections = [];
 
     public $UserService;
     public $MessageService;
+    protected $router;
 
 
     public function __construct()
     {
         $this->UserService = new UserService;
         $this->MessageService = new MessageService;
+
 
     }
 
@@ -35,7 +37,7 @@ class WebSocketController extends Controller implements MessageComponentInterfac
         $user = $this->UserService->getUserByConnection($conn);
 
         if ($user && !$user->banned) {
-//            $conn->user = $user;
+          $conn->user = $user;
 
             $conn->username = $user->login;
             if ($this->UserService->isAdmin($user->id)) {
@@ -57,6 +59,12 @@ class WebSocketController extends Controller implements MessageComponentInterfac
                 'type' => 'oldMessages',
                 'messages' => $this->MessageService->getLastMessages()
             ]));
+//            try{
+//
+//            }catch(\Exception $e){
+//                Log::debug($e->getFile().' -- '.$e->getMessage());
+//            }
+
 
             foreach ($this->connections as $peer) {
                 $peer->send(json_encode([
@@ -67,7 +75,6 @@ class WebSocketController extends Controller implements MessageComponentInterfac
         } else {
             $conn->close();
         }
-
     }
 
     /**
@@ -119,6 +126,16 @@ class WebSocketController extends Controller implements MessageComponentInterfac
      */
     function onMessage(ConnectionInterface $conn, $msg)
     {
+        try{
+            Message::message($conn,$msg);
+        }catch(\Exception $e){
+            $conn->send(json_encode( [
+                'type' => 'message',
+                'sent' => date("Y-m-d H:i:s"),
+                'author' => 'System',
+                'content' => $e->getMessage()
+            ]));
+        }
         $user = $this->UserService->getUserByConnection($conn);
         $message = json_decode($msg);
 
@@ -126,7 +143,7 @@ class WebSocketController extends Controller implements MessageComponentInterfac
             case'message':
                 Log::debug($msg);
 
-                if (!$fail=$this->MessageService->validateMessage($user,$message)){
+                if ($fail=$this->MessageService->validateMessage($user,$message)){
                     Log::debug($fail);
 
                     $this->send($conn, [
@@ -138,7 +155,7 @@ class WebSocketController extends Controller implements MessageComponentInterfac
 
                     return;
                 }
-                
+
                 $this->MessageService->saveMessage($user->id, $message->content);
 
                 $this->sendToAll([

@@ -62,7 +62,7 @@ class Login extends React.Component {
     }
 
     ascForToken(username,password){
-        axios.post('http://localhost/api/login', {
+        axios.post('http://chat.local/api/login', {
             login: username,
             password: password,
         }, {
@@ -81,9 +81,12 @@ class Login extends React.Component {
 
         })
             .catch((reason) =>{
-                this.setState(
-                    reason.response.data
-                );
+                if(reason){
+                    this.setState(
+                        reason.response.data
+                    )
+                }
+
             });
 
     }

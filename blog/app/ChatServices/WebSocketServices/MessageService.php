@@ -46,14 +46,14 @@ class MessageService
 
 
     public function getLastMessages(){
-        $all= Message::all();
+        $all= Message::with('user')->get();
         $res=[];
         foreach($all as $message){
             $res[]=[
                 'type' => 'message',
                 'status' => 'output',
                 'sent'=>$message->created_at,
-                'author'=>User::find($message->user_id)->login,
+                'author'=>$message->user->login,
                 'content'=>$message->content
             ];
         }
