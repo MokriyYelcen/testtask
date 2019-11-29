@@ -2,12 +2,35 @@
 
 
 namespace App\ChatServices\WebSocketServices;
-use App\{User,Message,color};
+use App\{Http\Controllers\WebSocketController, User, Message, color};
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class MessageService
 {
+    protected $WebSocketController ;
+    public function __construct(WebSocketController $WebSocketController)
+    {
+        $this->WebSocketController = $WebSocketController;
+    }
+
+    public function send($conn, $data){
+        $conn->send(json_encode($data));
+    }
+
+    public function sendToAll($data){
+        foreach ($this->WebSocketController->connections as $peer) {
+            $peer->send(json_encode($data));
+        }
+    }
+    public function sendToAdmins($data){
+        foreach($this->WebSocketController->connections as $id => $peer){
+            if($peer->user->isAdmin){
+                $peer->send(json_encode($data));
+            }
+
+        }
+    }
     public function saveMessage($authorId,$content){
         $message= new Message;
         $message->user_id=$authorId;

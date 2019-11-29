@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\ChatServices\WebSocketServices\MessageRouter;
+use App\ChatServices\WebSocketServices\{MessageRouter,MessageService,UserService};
 use App\Http\Controllers\WebSocketController;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
@@ -45,6 +45,11 @@ class WebSocketServiceProvider extends ServiceProvider
             require_once (Config::get('webSocket.messageRoutesPath'));
         }
 
-
+        $this->app->bind(MessageService::class,function($app){
+            return new MessageService($app->make(WebSocketController::class));
+        });
+        $this->app->bind(UserService::class,function($app){
+            return new UserService();
+        });
     }
 }

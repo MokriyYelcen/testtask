@@ -21,9 +21,7 @@ class WebSocketController extends Controller implements MessageComponentInterfac
     public function __construct()
     {
         $this->UserService = new UserService;
-        $this->MessageService = new MessageService;
-
-
+        $this->MessageService = new MessageService($this);
     }
 
 
@@ -140,33 +138,33 @@ class WebSocketController extends Controller implements MessageComponentInterfac
         $message = json_decode($msg);
 
         switch ($message->type) {
-            case'message':
-                Log::debug($msg);
-
-                if ($fail=$this->MessageService->validateMessage($user,$message)){
-                    Log::debug($fail);
-
-                    $this->send($conn, [
-                        'type' => 'message',
-                        'sent' => date("Y-m-d H:i:s"),
-                        'author' => 'System',
-                        'content' => $fail
-                    ]);
-
-                    return;
-                }
-
-                $this->MessageService->saveMessage($user->id, $message->content);
-
-                $this->sendToAll([
-                    'type' => 'message',
-                    'sent' => date("Y-m-d H:i:s"),
-                    'author' => $user->login,
-                    'content' => $message->content,
-                    'color'=>$this->MessageService->getUserMessageColor($user->id)
-                ]);
-
-                break;
+//            case'message':
+//                Log::debug($msg);
+//
+//                if ($fail=$this->MessageService->validateMessage($user,$message)){
+//                    Log::debug($fail);
+//
+//                    $this->send($conn, [
+//                        'type' => 'message',
+//                        'sent' => date("Y-m-d H:i:s"),
+//                        'author' => 'System',
+//                        'content' => $fail
+//                    ]);
+//
+//                    return;
+//                }
+//
+//                $this->MessageService->saveMessage($user->id, $message->content);
+//
+//                $this->sendToAll([
+//                    'type' => 'message',
+//                    'sent' => date("Y-m-d H:i:s"),
+//                    'author' => $user->login,
+//                    'content' => $message->content,
+//                    'color'=>$this->MessageService->getUserMessageColor($user->id)
+//                ]);
+//
+//                break;
 
             case 'changeMuted':
                 Log::debug('changeMuted');

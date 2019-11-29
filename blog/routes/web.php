@@ -12,10 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome',['env'=>App::environment()]);
 
 });
 Route::get('/authentication', function () {
     return view('authentication');
 });
-Route::get('test', 'TestController@test');
+Route::get('/test', 'TestController@test');

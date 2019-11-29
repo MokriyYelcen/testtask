@@ -10,9 +10,6 @@ use Ratchet\ConnectionInterface;
 class UserService
 {
 
-    public function __construct(){
-
-    }
     function sayHello(){
         return json_encode(['hello'=>' Im` message from server']);
     }

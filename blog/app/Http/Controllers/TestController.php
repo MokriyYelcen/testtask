@@ -8,22 +8,22 @@ use Illuminate\Support\Facades\Config;
 use App\Facades\MessageRouterFacade as Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\{ User, color};
+use App\{ChatServices\WebSocketServices\MessageService,
+    ChatServices\WebSocketServices\UserService,
+    User,
+    color,
+    ChatServices\MessageHandlers\GlobalMessageHandler};
 
 class TestController extends Controller
 {
+    public function __construct(UserService $userService,messageService $messageService){
+        $this->userService = $userService;
+        $this->messageService = $messageService;
+    }
+    protected $userService;
+    protected $messageService;
     public function test(Request $request){
-        try{
-//            $login = Message::find(1)->user->login;
-
-            //Message::sayHello();
-//            return response()->json(color::inRandomOrder()->first()->id);
-            return response()->json(Config::get('webSocket.port'));
-        }catch(Exception $e){
-        var_dump($e->getFile());
-        var_dump($e->getRow());
-        var_dump($e->getMessage());
-        }
-
+//        $obj = new GlobalMessageHandler( $this->userService,$this->messageService);
+        return response()->json(class_exists(GlobalMessageHandler::class));
     }
 }

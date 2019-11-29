@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravelgdfg
+                    Laravel {{$env}}
                 </div>
 
                 <div class="links">
