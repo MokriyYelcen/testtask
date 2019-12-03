@@ -40,28 +40,13 @@ class MessageService
 
     public function validateMessage($user, $message)
     {
-        if (!$user->muted) {
-            Log::debug('not muted');
-            if (strlen($message->content) <= 255) {
-                Log::debug('content less 255');
-                Log::debug('calling ableToSend');
-                if (self::ableToSend($user->id)) {
-                    Log::debug('ableToSend ok');
-                    return null;
-                } else {
-                    Log::debug('ableToSend fail');
-                    return 'You can send messages no more than every 15 seconds ';
-                }
-            } else {
-                Log::debug('invalid content');
-                return 'Invalid content, message have not been sent';
-            }
+        if($user->muted ) return 'Your account was muted by admin, wait please';
+        if (strlen($message->content) >= 255) return 'Invalid content, message have not been sent';
+        if (self::ableToSend($user->id)) {
+            return null;
         } else {
-            Log::debug('account muted');
-            return 'Your account was muted by admin, wait please';
+            return 'You can send messages no more than every 15 seconds ';
         }
-        Log::debug('validated');
-        return null;
     }
 
 
@@ -85,16 +70,12 @@ class MessageService
 
 
     private static function ableToSend($id){
-        Log::debug('ableToSend start');
         $message=User::find($id)->Messages()->orderByDesc('created_at')->first();
-        Log::debug($message);
         if($message){
-            Log::debug($message->created_at->diffInSeconds(Carbon::now())>15);
             return ($message->created_at->diffInSeconds(Carbon::now())>15);
         }
 
 
-        Log::debug('return true from ableToSend ');
         return true;
     }
 

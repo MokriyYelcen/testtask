@@ -5,6 +5,7 @@ namespace App\ChatServices\WebSocketServices;
 
 
 use App\Http\Controllers\WebSocketController;
+use Illuminate\Support\Facades\Log;
 
 class MessageRouter
 {
@@ -27,6 +28,7 @@ class MessageRouter
     }
     public function message($conn,$message){
         $message = json_decode($message);
+        $conn->user->reload();
         if(array_key_exists($message->type,$this->messageTypes)){
             foreach($this->messageTypes[$message->type] as $action){
                 switch($this->getActionTypeString($action)){

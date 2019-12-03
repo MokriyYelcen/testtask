@@ -43,8 +43,6 @@ class UserService
 
     }
     function getAllUsersArray(){
-//        $res=[];
-//        $Users=User::all();
 
         return User::all()->map(function($user){
             return [
@@ -55,16 +53,6 @@ class UserService
             ];
         });
 
-//        foreach($Users as $user){
-//            $res[]=[
-//                'id'=>$user->id,
-//                'username'=>$user->login,
-//                'banned'=>$user->banned,
-//                'muted'=>$user->muted
-//            ];
-//        }
-//
-//        return $res;
     }
 
     function changeBanned($id){

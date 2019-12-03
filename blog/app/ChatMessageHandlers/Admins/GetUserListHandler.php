@@ -12,7 +12,7 @@ use App\User;
 use Illuminate\Support\Facades\Log;
 use Ratchet\ConnectionInterface;
 
-class ChangeMutedHandler implements MessageHandler
+class GetUserListHandler implements MessageHandler
 {
 
     public function __construct(UserService $userService,MessageService $messageService){
@@ -23,11 +23,11 @@ class ChangeMutedHandler implements MessageHandler
     protected $messageService;
 
     public function handle(ConnectionInterface $conn,$message,WebSocketController $obj){
-        if (!$conn->user->isAdmin) return;
-        $this->userService->changeMuted($message->user);
-        $this->messageService->sendToAdmins([
-            'type' => 'updateUserList',
-            'userList' => $this->userService->getAllUsersArray()
-        ]);
+        if ($conn->user->isAdmin) {
+            $this->messageService->send($conn,[
+                'type' => 'updateUserList',
+                'userList' => $this->userService->getAllUsersArray()
+            ]);
+        }
     }
 }

@@ -14,7 +14,7 @@ use Ratchet\ConnectionInterface;
 class ChangeBannedHandler implements MessageHandler
 {
 
-    public function __construct(UserService $userService,messageService $messageService){
+    public function __construct(UserService $userService,MessageService $messageService){
         $this->userService = $userService;
         $this->messageService = $messageService;
     }
@@ -22,52 +22,28 @@ class ChangeBannedHandler implements MessageHandler
     protected $messageService;
 
     public function handle(ConnectionInterface $conn,$message,WebSocketController $obj){
-        if (!$conn->user->isAdmin) {
-            return;
-        }
-
+        if (!$conn->user->isAdmin) return;
         $target = $this->userService->getUserById($message->user);
-
-//                if ($conn->isAdmin) {
-        if($conn->user->id != $target->id){
-            if(!$pastBannedStatus=$target->banned){
-                if (array_key_exists($message->user,$this->connections)) {
-                    $this->connections[$message->user]->close();
-                    unset($this->connections[$message->user]);
-                }else{
-                    Log::debug('pastBannedStatus : '. $pastBannedStatus.'+'.'User i snot connected now');
-                }
-            }
-
-            $this->UserService->changeBanned($message->user);
-        }else{
-            $this->send($conn,[
+        if($conn->user->id == $target->id){
+            $this->messageService->send($conn,[
                 'type' => 'message',
                 'sent' => date("Y-m-d H:i:s"),
                 'author' => 'System',
                 'content' => 'suicide is not an option'
 
             ]);
+            return;
         }
-
-//                }
-
-        $this->toAdmins([
+        if(!$pastBannedStatus=$target->banned){
+            if (array_key_exists($message->user,$obj->connections)) {
+                $obj->connections[$message->user]->close();
+                unset($obj->connections[$message->user]);
+            }
+        }
+        $this->userService->changeBanned($message->user);
+        $this->messageService->sendToAdmins([
             'type' => 'updateUserList',
-            'userList' => $this->UserService->getAllUsersArray()
+            'userList' => $this->userService->getAllUsersArray()
         ]);
-
-//                foreach($this->connections as $id=> $peer){
-//                    if($peer->isAdmin){
-//                            Log::debug('Admin peer ==='.$peer->isAdmin);
-//                            $peer->send(json_encode([
-//                                'type' => 'updateUserList',
-//                                'userList' => $this->UserService->getAllUsersArray()
-//                            ]));
-//                        Log::debug('sent to==='.$id);
-//                        }
-//
-//                }
-
     }
 }

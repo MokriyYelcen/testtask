@@ -57,11 +57,6 @@ class WebSocketController extends Controller implements MessageComponentInterfac
                 'type' => 'oldMessages',
                 'messages' => $this->MessageService->getLastMessages()
             ]));
-//            try{
-//
-//            }catch(\Exception $e){
-//                Log::debug($e->getFile().' -- '.$e->getMessage());
-//            }
 
 
             foreach ($this->connections as $peer) {
@@ -109,11 +104,8 @@ class WebSocketController extends Controller implements MessageComponentInterfac
      */
     function onError(ConnectionInterface $conn, \Exception $e)
     {
-        /*
-        $userId = $this->connections[$conn->resourceId]['user_id'];
-        echo "An error has occurred with user $userId: {$e->getMessage()}\n";
-        unset($this->connections[$conn->resourceId]);
-        $conn->close();*/
+        Log::debug((new \DateTime())->format('Y-m-d H:i:s').') user: '.$conn->name.
+            ', get the next error: {'.PHP_EOL.$e.PHP_EOL.'}');
     }
 
     /**
@@ -131,182 +123,11 @@ class WebSocketController extends Controller implements MessageComponentInterfac
                 'type' => 'message',
                 'sent' => date("Y-m-d H:i:s"),
                 'author' => 'System',
-                'content' => $e->getMessage()
+                'content' => (string)$e
             ]));
         }
-        $user = $this->UserService->getUserByConnection($conn);
-        $message = json_decode($msg);
-
-        switch ($message->type) {
-//            case'message':
-//                Log::debug($msg);
-//
-//                if ($fail=$this->MessageService->validateMessage($user,$message)){
-//                    Log::debug($fail);
-//
-//                    $this->send($conn, [
-//                        'type' => 'message',
-//                        'sent' => date("Y-m-d H:i:s"),
-//                        'author' => 'System',
-//                        'content' => $fail
-//                    ]);
-//
-//                    return;
-//                }
-//
-//                $this->MessageService->saveMessage($user->id, $message->content);
-//
-//                $this->sendToAll([
-//                    'type' => 'message',
-//                    'sent' => date("Y-m-d H:i:s"),
-//                    'author' => $user->login,
-//                    'content' => $message->content,
-//                    'color'=>$this->MessageService->getUserMessageColor($user->id)
-//                ]);
-//
-//                break;
-
-            case 'changeMuted':
-                Log::debug('changeMuted');
-
-                if (!$conn->isAdmin) {
-                    return;
-                }
-
-                Log::debug('isAdmin');
-                $this->UserService->changeMuted($message->user);
-
-                $this->toAdmins([
-                    'type' => 'updateUserList',
-                    'userList' => $this->UserService->getAllUsersArray()
-                ]);
-
-                break;
-
-            case 'changeBanned':
-                if (!$conn->isAdmin) {
-                    return;
-                }
-
-                $target = $this->UserService->getUserById($message->user);
-
-//                if ($conn->isAdmin) {
-                if($user->id != $target->id){
-                    if(!$pastBannedStatus=$target->banned){
-                        if (array_key_exists($message->user,$this->connections)) {
-                            $this->connections[$message->user]->close();
-                            unset($this->connections[$message->user]);
-                        }else{
-                            Log::debug('pastBannedStatus : '. $pastBannedStatus.'+'.'User i snot connected now');
-                        }
-                    }
-
-                    $this->UserService->changeBanned($message->user);
-                }else{
-                    $this->send($conn,[
-                        'type' => 'message',
-                        'sent' => date("Y-m-d H:i:s"),
-                        'author' => 'System',
-                        'content' => 'suicide is not an option'
-
-                    ]);
-                }
-
-//                }
-
-            $this->toAdmins([
-                'type' => 'updateUserList',
-                'userList' => $this->UserService->getAllUsersArray()
-            ]);
-
-//                foreach($this->connections as $id=> $peer){
-//                    if($peer->isAdmin){
-//                            Log::debug('Admin peer ==='.$peer->isAdmin);
-//                            $peer->send(json_encode([
-//                                'type' => 'updateUserList',
-//                                'userList' => $this->UserService->getAllUsersArray()
-//                            ]));
-//                        Log::debug('sent to==='.$id);
-//                        }
-//
-//                }
-
-                break;
-
-            case'getUserList':
-                if ($conn->isAdmin) {
-                    $conn->send(json_encode([
-                        'type' => 'updateUserList',
-                        'userList' => $this->UserService->getAllUsersArray()
-                    ]));
-                }
-                break;
-
-
-        }
-
-
     }
 
-    public function toAdmins($data){
-        foreach($this->connections as $id=> $peer){
-            if($peer->isAdmin){
-                Log::debug('Admin peer ==='.$peer->isAdmin);
-                $peer->send(json_encode($data));
-                Log::debug('sent to==='.$id);
-            }
 
-        }
-    }
-
-    public function send($conn, $data){
-        $conn->send(json_encode($data));
-    }
-
-    public function sendToAll($data){
-        foreach ($this->connections as $peer) {
-            $peer->send(json_encode($data));
-        }
-    }
 }
-/*
- * Log::debug('changeBanned');
-                Log::debug('Before the changeBanned methos array connections '.count($this->connections));
-                foreach ($this->connections as $id =>$peer) {
-                    Log::debug($id.'==='.$peer);
-//                        if($peer->isAdmin){
-//                            Log::debug('Admin peer ==='.$peer->isAdmin);
-//                            $peer->send(json_encode([
-//                                'type' => 'updateUserList',
-//                                'userList' => $this->UserService->getAllUsersArray()
-//                            ]));
-//                        }
 
-                }
-                if ($conn->isAdmin) {
-                    Log::debug('isAdmin');
-                    $pastBannedStatus=$this->UserService->getUserById($message->user)->banned;
-                    Log::debug('$pastBannedStatus' . $pastBannedStatus);
-                    Log::debug('Before the changeBanned methos array connections '.count($this->connections).'elements the first'.$this->connections[1]);
-                    $this->UserService->changeBanned($message->user);
-                    Log::debug('changeBanned fired');
-                    Log::debug('connections '.count($this->connections));
-                    Log::debug($this->connections[1]);
-                    foreach ($this->connections as $id =>$peer) {
-                        Log::debug($id.'==='.$peer);
-//                        if($peer->isAdmin){
-//                            Log::debug('Admin peer ==='.$peer->isAdmin);
-//                            $peer->send(json_encode([
-//                                'type' => 'updateUserList',
-//                                'userList' => $this->UserService->getAllUsersArray()
-//                            ]));
-//                        }
-
-                    }
-//                    if(!$pastBannedStatus){
-//                        if ($this->connections[$message->user]) {
-//                            $this->connections[$message->user]->close();
-//                            unset($this->connections[$message->user]);
-//                        }
-//                    }
-                }*/

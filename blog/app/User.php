@@ -45,5 +45,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Message');
     }
+    public function reload()
+    {
+        $current = self::find($this->id);
+        foreach($current->toArray() as $field => $value){
+            $this->{$field} = $value;
+        }
+    }
 
 }
