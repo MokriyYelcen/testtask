@@ -23,7 +23,7 @@ class LoginController extends Controller
                 if(!$user->banned){
                     $newToken=Str::random(32);
                     $user->token=$newToken;
-                    $newColorId=color::inRandomOrder()->first()->id;
+                    $newColorId=color::inRandomOrder()->first()->id;    //that test commit SM-3
                     $user->color_id=$newColorId;
                     $user->save();
                     return response()->json(['token' => $newToken]);
