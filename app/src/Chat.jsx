@@ -1,5 +1,6 @@
 import React from 'react';
 import OnlineList from './OnlineList';
+import MyDialogs from './MyDialogs';
 import Admin from './Admin';
 
 class Chat extends React.Component{
@@ -11,6 +12,7 @@ class Chat extends React.Component{
 
         this.state={
             onlineList:[],
+            dialogsList:[],
             messages:[],
             inputMessage:'',
             admin:false,
@@ -33,12 +35,17 @@ class Chat extends React.Component{
                     this.setState({
                         messages: message.messages
 
-                    })
-                    break
+                    });
+                    break;
+                case 'dialogsList':
+                    this.setState({
+                        dialogsList: message.dialogsList
+
+                    });
                 case 'message':
                         this.setState({
                             messages: [ ...this.state.messages,  message]
-                        })
+                        });
 
                     break;
 
@@ -133,16 +140,8 @@ class Chat extends React.Component{
                 </div>
                 <div className="row">
                     <div className="col-4">
-                        { this.state.admin && (
-                            <Admin
-                                userList={this.state.userList}
-                                getUserList={this.getUserList}
-                                changeMuted={this.changeMutedStatus}
-                                changeBanned={this.changeBannedStatus}
-                            />
-                        ) }
-                        <div className="onlineList">
-                            <OnlineList onlineList={this.state.onlineList}/>
+                        <div className="MyDialogs">
+                            <MyDialogs onlineList={this.state.dialogsList}/>
                         </div>
                     </div>
                     <div className="col-auto">
@@ -182,6 +181,19 @@ class Chat extends React.Component{
                             </div>
                         </div>
 
+                    </div>
+                    <div className="col-4">
+                        { this.state.admin && (
+                            <Admin
+                                userList={this.state.userList}
+                                getUserList={this.getUserList}
+                                changeMuted={this.changeMutedStatus}
+                                changeBanned={this.changeBannedStatus}
+                            />
+                        ) }
+                        <div className="onlineList">
+                            <OnlineList onlineList={this.state.onlineList}/>
+                        </div>
                     </div>
                 </div>
 
