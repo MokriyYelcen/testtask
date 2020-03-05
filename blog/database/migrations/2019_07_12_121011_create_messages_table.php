@@ -22,6 +22,7 @@ class CreateMessagesTable extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade');
         });
+        //sdfds
     }
 
     /**
